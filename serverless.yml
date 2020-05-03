@@ -64,8 +64,8 @@ functions:
       - http:
           path: profiles
           method: get
-  autocomplete:
-    handler: handler.autocomplete
+  findByTitle:
+    handler: handler.findByTitle
     events:
       - http:
           path: profiles/autocomplete/{title}

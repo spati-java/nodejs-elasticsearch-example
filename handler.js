@@ -1,19 +1,19 @@
 'use strict';
 
 const { Client } = require('@elastic/elasticsearch')
-const client = new Client({node: 'http://localhost:9200'})
+const client = new Client({ node: 'http://localhost:9200' })
 
 module.exports.findAllProfile = async event => {
-// Let's search!
-const { body } = await client.search({
-  index: 'profile',
-  // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
-  body: {
-    query: {
-     "match_all": {}
+  // Let's search!
+  const { body } = await client.search({
+    index: 'profile',
+    // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
+    body: {
+      query: {
+        "match_all": {}
+      }
     }
-  }
-})
+  })
 
   return {
     statusCode: 200,
@@ -27,22 +27,22 @@ const { body } = await client.search({
   };
 };
 
-module.exports.autocomplete = async event => {
+module.exports.findByTitle = async event => {
   // Let's search!
-const { body } = await client.search({
-  index: 'profile',
-  // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
-  body: {
-    query: {
-      "match": {
-        "jobTitle": {
-          "query": event.pathParameters.title, 
-          "operator": "and"
+  const { body } = await client.search({
+    index: 'profile',
+    // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
+    body: {
+      query: {
+        "match": {
+          "jobTitle": {
+            "query": event.pathParameters.title,
+            "operator": "and"
+          }
         }
       }
     }
-  }
-})
+  })
 
   return {
     statusCode: 200,
