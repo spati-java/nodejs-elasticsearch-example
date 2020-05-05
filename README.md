@@ -35,4 +35,4 @@
 
 ### If everything goes well you will see something like this in your console screen
 
-![Serverless offline start screen](/serverless_offline_start_screen.png)
+![Serverless offline start screen]( /serverless_offline_start_screen.png)
