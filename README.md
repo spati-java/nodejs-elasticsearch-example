@@ -1,6 +1,6 @@
 ## A practical example for NodeJs, Elasticsearch, Serverless Framework for AWS Lambda
 
-### The use case is such that we are creating a LinkedIn Profile, bellow are the operations that can be done with this profiles
+### The use case is such that we are creating Profiles like you see how a profile looks like About , Experience, certifications ects, bellow are the operations that can be done using the profile app.
 
 - create a profile
 - update a profile
