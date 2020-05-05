@@ -1,5 +1,9 @@
 ## A practical example for NodeJs, Elasticsearch, Serverless Framework for AWS Lambda
 
+### The design diagram
+
+![Design](nodejs-es-example-design.png)
+
 ### The use case is such that we are creatin a LinkedIn Profile, bellow are the operations that can be done with this profiles
 
 - create a profile
