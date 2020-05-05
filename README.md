@@ -57,4 +57,4 @@ If everything goes well you will see something like this in your console screen
 ![Serverless offline start screen](serverless_offline_start_screen.png)
 
 ### Now you can use some rest client like postman to test all of the apis
-# HAPPY LEARNING!! 
+# HAPPY LEARNING!!   :smiley:
