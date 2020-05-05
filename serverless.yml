@@ -10,18 +10,28 @@ provider:
   region: us-east-1
 
 functions:
+
+  createProfile:
+    handler: handler.createProfile
+    events:
+      - http:
+         path: profiles
+         method: post
+
   findAllProfile:
     handler: handler.findAllProfile
     events:
       - http:
           path: profiles
           method: get
+
   findByTitle:
     handler: handler.findByTitle
     events:
       - http:
           path: profiles/autocomplete/{title}
-          method: get  
+          method: get
+
   findProfileById:
     handler: handler.findProfileById
     events:

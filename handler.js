@@ -3,6 +3,27 @@
 const { Client } = require('@elastic/elasticsearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
+
+
+module.exports.createProfile = async (event, context, callback) => {
+  console.log(event.body)
+  const { body } = await client.index({
+    index: 'profile',
+    body: event.body
+  });
+
+  callback(null, {
+    body: JSON.stringify({
+      statusCode: 201,
+      result: body.result
+    },
+      null,
+      2
+    )
+  });
+}
+
+
 module.exports.findAllProfile = async event => {
   // Let's search!
   const { body } = await client.search({
