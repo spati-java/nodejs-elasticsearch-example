@@ -1,5 +1,6 @@
 ## A practical example for NodeJs, Elasticsearch, Serverless Framework for AWS Lambda
 
+### Use Case Description
  *Like Linked-In profile , we create a back-end system which can do the following*
 
 - create a profile
