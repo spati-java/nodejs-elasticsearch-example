@@ -1,6 +1,6 @@
 ## A practical example for NodeJs, Elasticsearch, Serverless Framework for AWS Lambda
 
-### The use case is such that we are creating Profiles like you see how a profile looks like in LinkedIn, there is  About , Experience, certifications etc, bellow are the operations that can be done using the profile app.
+ *Like Linked-In profile , we create a back-end system which can do the following*
 
 - create a profile
 - update a profile
@@ -37,8 +37,11 @@
 ##### Then you will need to install the following things to get this project up and running
     
       git clone https://github.com/spati-java/nodejs-elasticsearch-example.git 
+
       cd nodejs-elasticsearch-example
+      
       npm install -g serverless
+
       npm install serverless-offline --save-dev
 
 ### Before  you start the app, from the project folder type *sls offline* 
@@ -51,3 +54,6 @@
 If everything goes well you will see something like this in your console screen
 
 ![Serverless offline start screen](serverless_offline_start_screen.png)
+
+### Now you can use some rest client like postman to test all of the apis
+# HAPPY LEARNING!! 
