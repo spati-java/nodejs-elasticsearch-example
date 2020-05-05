@@ -17,6 +17,19 @@
 
 ## Getting started
 
+### Setting up elasticsearch
+
+      docker pull docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+
+      docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+      
+
+### Set up kibana 
+
+     docker pull docker.elastic.co/kibana/kibana:7.6.2
+
+     docker run --link YOUR_ELASTICSEARCH_CONTAINER_NAME_OR_ID:elasticsearch -p 5601:5601 {docker-repo}:{version}      
+
 ### Make sure you have *node* and *npm* installed. 
 
  Then you will need to install the following things to get this project up and running
