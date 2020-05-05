@@ -10,13 +10,12 @@ provider:
   region: us-east-1
 
 functions:
-
   createProfile:
     handler: handler.createProfile
     events:
       - http:
-         path: profiles
-         method: post
+          path: profiles
+          method: post
 
   findAllProfile:
     handler: handler.findAllProfile
@@ -36,15 +35,22 @@ functions:
     handler: handler.findProfileById
     events:
       - http:
-         path: profiles/{Id}
-         method: get
-        
+          path: profiles/{Id}
+          method: get
+
   deleteProfileById:
     handler: handler.deleteProfileById
     events:
       - http:
-         path: profiles/{Id}
-         method: delete     
+          path: profiles/{Id}
+          method: delete
+
+  nestedQueryExample:
+    handler: handler.nestedQueryExample
+    events:
+      - http:
+          path: profiles/nested-example/{skils}
+          method: get
 
 plugins:
   - serverless-offline
