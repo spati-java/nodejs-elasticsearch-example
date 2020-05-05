@@ -1,15 +1,15 @@
 ## A practical example for NodeJs, Elasticsearch, Serverless Framework for AWS Lambda
 
-### The use case is such that we are creatin a LinkedIn Profile, bellow are the operations that can be done with this profiles
+### The use case is such that we are creating a LinkedIn Profile, bellow are the operations that can be done with this profiles
 
 - create a profile
 - update a profile
 - delete a profile
-- find profile by id
-- find all profile (response with top 5 result)
-- autocomomplete feature for title field 
+- find a profile by id
+- find all profiles (response with top 5 result)
+- autocomplete feature for title field 
 - search profile by matching skils (e.g  get all profiles that match "Elasticsearch")
-- search for profile by licesnce and certifications certifications (find all the profiles that macth aws certified solutions architect)
+- search for profile by licesnce and certifications certifications (e.g find all profiles that match aws certified solutions architect)
 
 ### The design diagram
 
@@ -31,7 +31,7 @@
     npm install serverless-offline --save-dev
 
 ### Before  you start the app, from the project folder type *sls offline* 
- You  should see the the *offline* in in the console.
+ You  should see the the *offline* on the console.
 
 ### Now on the console from the project folder 
 
