@@ -38,7 +38,13 @@ functions:
       - http:
          path: profiles/{Id}
          method: get
-
+        
+  deleteProfileById:
+    handler: handler.deleteProfileById
+    events:
+      - http:
+         path: profiles/{Id}
+         method: delete     
 
 plugins:
   - serverless-offline

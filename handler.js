@@ -104,3 +104,10 @@ module.exports.findProfileById = async (event, context, callback) => {
 
 }
 
+module.exports.deleteProfileById = async (event, context, callback) => {
+  const {body} = await client.delete({
+    id: event.pathParameters.Id,
+    index: 'profile'
+  });
+  callback(null, body.result)
+}
