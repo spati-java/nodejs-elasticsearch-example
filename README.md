@@ -17,7 +17,7 @@
 
 ## Getting started
 
-### Setting up elasticsearch
+### Set up elasticsearch
 
       docker pull docker.elastic.co/elasticsearch/elasticsearch:7.6.2
 
