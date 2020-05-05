@@ -30,9 +30,11 @@
 
      docker run --link YOUR_ELASTICSEARCH_CONTAINER_NAME_OR_ID:elasticsearch -p 5601:5601 {docker-repo}:{version}      
 
-### Make sure you have *node* and *npm* installed. 
+### Set up Serverless framework
 
- Then you will need to install the following things to get this project up and running
+- Make sure you have *node* and *npm* installed. 
+
+- Then you will need to install the following things to get this project up and running
 
 
     git clone https://github.com/spati-java/nodejs-elasticsearch-example.git 
