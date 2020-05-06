@@ -16,6 +16,12 @@ functions:
       - http:
           path: profiles
           method: post
+  updateProfile:
+    handler: handler.updateProfile
+    events:
+      - http:
+          path: profiles/{Id}
+          method: put
 
   findAllProfile:
     handler: handler.findAllProfile
@@ -28,7 +34,7 @@ functions:
     handler: handler.findByTitle
     events:
       - http:
-          path: profiles/autocomplete/{title}
+          path: profiles/auto-complete/{title}
           method: get
 
   findProfileById:
@@ -50,6 +56,13 @@ functions:
     events:
       - http:
           path: profiles/nested-example/{skils}
+          method: get
+
+  getProfileCount:
+    handler: handler.getProfileCount
+    events:
+      - http:
+          path: profiles/counts
           method: get
 
 plugins:
