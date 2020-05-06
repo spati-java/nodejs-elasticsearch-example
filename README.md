@@ -8,7 +8,7 @@
 - delete a profile
 - find a profile by id
 - find all profiles (response with top 5 result)
-- autocomplete feature for title field 
+- autocomplete feature for title field (in other other word type ahead feature, as you keep typing data on a search field, data should be auto matically populated)
 - search profile by matching skils (e.g  get all profiles that match "Elasticsearch")
 - search for profile by licesnce and certifications certifications (e.g find all profiles that match aws certified solutions architect)
 
