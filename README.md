@@ -29,7 +29,12 @@
 
      docker pull docker.elastic.co/kibana/kibana:7.6.2
 
-     docker run --link YOUR_ELASTICSEARCH_CONTAINER_NAME_OR_ID:elasticsearch -p 5601:5601 {docker-repo}:{version}      
+     docker run --link YOUR_ELASTICSEARCH_CONTAINER_NAME_OR_ID:elasticsearch -p 5601:5601 {docker-repo}:{version}   
+
+#### create the index using mapping_settings.json file : should looks like this
+
+![Profile-index_mapping-settings](kibana-profile-mapping-setting.png)
+
 
 ### Set up Serverless framework
  
