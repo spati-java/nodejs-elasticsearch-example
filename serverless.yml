@@ -56,7 +56,7 @@ functions:
     handler: handler.getProfileCount
     events:
       - http:
-          path: profiles/count
+          path: profiles/counts
           method: get
 
 plugins:

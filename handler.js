@@ -157,12 +157,12 @@ module.exports.getProfileCount = async (event, context, callback) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        count: body.count
+        counts: body.count
       },
       null,
       2
     ),
   };
-  
+
   callback(null, resposne);
 }
