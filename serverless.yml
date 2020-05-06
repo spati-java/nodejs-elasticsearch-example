@@ -28,7 +28,7 @@ functions:
     handler: handler.findByTitle
     events:
       - http:
-          path: profiles/autocomplete/{title}
+          path: profiles/auto-complete/{title}
           method: get
 
   findProfileById:
@@ -50,6 +50,13 @@ functions:
     events:
       - http:
           path: profiles/nested-example/{skils}
+          method: get
+
+  getProfileCount:
+    handler: handler.getProfileCount
+    events:
+      - http:
+          path: profiles/count
           method: get
 
 plugins:

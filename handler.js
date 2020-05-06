@@ -29,7 +29,9 @@ module.exports.findAllProfile = async event => {
     body: {
       query: {
         "match_all": {}
-      }
+      },
+      "from": 0,
+      "size": 5
     }
   })
 
@@ -37,7 +39,7 @@ module.exports.findAllProfile = async event => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        profiles: body.hits.hits
+        profiles: body.hits.hits._source
       },
       null,
       2
@@ -142,5 +144,25 @@ module.exports.nestedQueryExample = async (event, context, callback) => {
     ),
   };
 
+  callback(null, resposne);
+}
+
+module.exports.getProfileCount = async (event, context, callback) => {
+
+  const { body } = await client.count({
+    index: 'profile'
+  });
+
+  const resposne = {
+    statusCode: 200,
+    body: JSON.stringify(
+      {
+        count: body.count
+      },
+      null,
+      2
+    ),
+  };
+  
   callback(null, resposne);
 }
