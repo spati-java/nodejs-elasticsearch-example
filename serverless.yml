@@ -14,55 +14,55 @@ functions:
     handler: handler.createProfile
     events:
       - http:
-          path: profiles
+          path: api/v1/profiles/
           method: post
   updateProfile:
     handler: handler.updateProfile
     events:
       - http:
-          path: profiles/{Id}
+          path: api/v1/profiles/{Id}
           method: put
 
   findAllProfile:
     handler: handler.findAllProfile
     events:
       - http:
-          path: profiles
+          path: api/v1/profiles/
           method: get
 
   findByTitle:
     handler: handler.findByTitle
     events:
       - http:
-          path: profiles/auto-complete/{title}
+          path: api/v1/profiles/edge-n-gram/{title}
           method: get
 
   findProfileById:
     handler: handler.findProfileById
     events:
       - http:
-          path: profiles/{Id}
+          path: api/v1/profiles/{Id}
           method: get
 
   deleteProfileById:
     handler: handler.deleteProfileById
     events:
       - http:
-          path: profiles/{Id}
+          path: api/v1/profiles/{Id}
           method: delete
 
   nestedQueryExample:
     handler: handler.nestedQueryExample
     events:
       - http:
-          path: profiles/nested-example/{skils}
+          path: api/v1/profiles/nested-query/{skils}
           method: get
 
   getProfileCount:
     handler: handler.getProfileCount
     events:
       - http:
-          path: profiles/counts
+          path: api/v1/profiles/counts
           method: get
 
 plugins:
