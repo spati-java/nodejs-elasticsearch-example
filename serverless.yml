@@ -34,7 +34,7 @@ functions:
     handler: handler.findByTitle
     events:
       - http:
-          path: api/v1/profiles/auto-complete/{title}
+          path: api/v1/profiles/edge-n-gram/{title}
           method: get
 
   findProfileById:
