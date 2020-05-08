@@ -71,13 +71,13 @@ module.exports.findAllProfile = async event => {
 
 // AUTOCOMPLETE EXAMPLE
 module.exports.findByTitle = async event => {
-
+console.log(event.pathParameters);
   const { body } = await client.search({
     index: 'profile',
     body: {
       query: {
         "match": {
-          "jobTitle": {
+          "job_title": {
             "query": event.pathParameters.title,
             "operator": "and"
           }
