@@ -62,4 +62,5 @@ If everything goes well you will see something like this in your console screen
 ![Serverless offline start screen](sls-offline-start-screen.png)
 
 ### Now you can use some rest client like postman to test all of the endpoints
-# HAPPY LEARNING!!   :smiley:
+
+## HAPPY LEARNING!! 
