@@ -2,16 +2,14 @@
 
 const { Client } = require('@elastic/elasticsearch')
 const client = new Client({ node: 'http://localhost:9200' })
-
+const index_name = 'profile'
 
 
 module.exports.createProfile = async (event, context, callback) => {
-  console.log(event.body)
   const { body } = await client.index({
-    index: 'profile',
+    index: index_name,
     body: event.body
   });
-
   callback(null, {
     body: JSON.stringify({
       statusCode: 201,
@@ -25,33 +23,20 @@ module.exports.createProfile = async (event, context, callback) => {
 
 
 module.exports.findAllProfile = async event => {
-  // Let's search!
   const { body } = await client.search({
-    index: 'profile',
-    // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
+    index: index_name,
     body: {
       query: {
         "match_all": {}
       }
     }
-  })
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        profiles: body.hits.hits
-      },
-      null,
-      2
-    ),
-  };
+  });
+  return response(body);
 };
 
 module.exports.findByTitle = async event => {
-
   const { body } = await client.search({
-    index: 'profile',
+    index: index_name,
     body: {
       query: {
         "match": {
@@ -62,8 +47,33 @@ module.exports.findByTitle = async event => {
         }
       }
     }
-  })
+  });
+  return response(body);
+}
 
+module.exports.findProfileById = async (event, context, callback) => {
+  const { body } = await client.search({
+    index: index_name,
+    body: {
+      query: {
+        "match": {
+          "_id": event.pathParameters.Id
+        }
+      }
+    }
+  });
+  callback(null, resposne(body));
+}
+
+module.exports.deleteProfileById = async (event, context, callback) => {
+  const { body } = await client.delete({
+    id: event.pathParameters.Id,
+    index: index_name
+  });
+  callback(null, body.result)
+}
+
+function response(body) {
   return {
     statusCode: 200,
     body: JSON.stringify(
@@ -74,40 +84,4 @@ module.exports.findByTitle = async event => {
       2
     ),
   };
-}
-
-module.exports.findProfileById = async (event, context, callback) => {
-
-  const { body } = await client.search({
-    index: 'profile',
-    body: {
-      query: {
-        "match": {
-          "_id": event.pathParameters.Id
-        }
-      }
-    }
-  });
-
-  const resposne = {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        profiles: body.hits.hits
-      },
-      null,
-      2
-    ),
-  };
-
-  callback(null, resposne);
-
-}
-
-module.exports.deleteProfileById = async (event, context, callback) => {
-  const {body} = await client.delete({
-    id: event.pathParameters.Id,
-    index: 'profile'
-  });
-  callback(null, body.result)
 }
