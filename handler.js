@@ -9,7 +9,7 @@ const index_name = 'profile';
 module.exports.createProfile = async (event, context, callback) => {
 
   const { body } = await client.index({
-    index: 'profile',
+    index: index_name,
     body: event.body
   });
 
@@ -28,9 +28,13 @@ module.exports.updateProfile = async (event, context, callback) => {
   console.log(event.body);
   const { body } = await client.index({
     id: event.pathParameters.Id,
-    index: 'profile',
+    index: index_name,
     body: event.body
-  });
+  },
+    (err, result) => {
+      if (err) console.error(err);
+    }
+  );
 
   callback(null, {
     body: JSON.stringify({
@@ -44,9 +48,8 @@ module.exports.updateProfile = async (event, context, callback) => {
 }
 
 module.exports.findAllProfile = async event => {
-
   const { body } = await client.search({
-    index: 'profile',
+    index: index_name,
     // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
     body: {
       query: {
@@ -55,10 +58,9 @@ module.exports.findAllProfile = async event => {
       "from": 0,
       "size": 5
     }
+  }, (err, result) => {
+    if (err) console.error(err);
   });
-
-  console.log(body);
-
   return response(body);
 }
 
@@ -66,7 +68,7 @@ module.exports.findAllProfile = async event => {
 module.exports.findByTitle = async event => {
   console.log(event.pathParameters);
   const { body } = await client.search({
-    index: 'profile',
+    index: index_name,
     body: {
       query: {
         "match": {
@@ -85,7 +87,7 @@ module.exports.findByTitle = async event => {
 module.exports.findProfileById = async (event, context, callback) => {
 
   const { body } = await client.search({
-    index: 'profile',
+    index: index_name,
     body: {
       query: {
         "match": {
@@ -93,7 +95,7 @@ module.exports.findProfileById = async (event, context, callback) => {
         }
       }
     }
-  });
+  },(err,result) => {if(err) console.error(err)});
 
   callback(null, resposne(body));
 
@@ -102,7 +104,9 @@ module.exports.findProfileById = async (event, context, callback) => {
 module.exports.deleteProfileById = async (event, context, callback) => {
   const { body } = await client.delete({
     id: event.pathParameters.Id,
-    index: 'profile'
+    index: index_name
+  }, (err, result) => {
+    if (err) console.error(err);
   });
   callback(null, body.result)
 }
@@ -110,7 +114,7 @@ module.exports.deleteProfileById = async (event, context, callback) => {
 module.exports.nestedQueryExample = async (event, context, callback) => {
 
   const { body } = await client.search({
-    index: 'profile',
+    index: index_name,
     body: {
       "query": {
         "nested": {
@@ -126,17 +130,19 @@ module.exports.nestedQueryExample = async (event, context, callback) => {
         }
       }
     }
+  }, (err, result) => {
+    if (err) console.error(err);
   });
 
   callback(null, resposne(body));
 }
 
 module.exports.getProfileCount = async (event, context, callback) => {
-
   const { body } = await client.count({
-    index: 'profile'
+    index: index_name
+  }, (err) => {
+    if (err) console.error(err);
   });
-
   callback(null, countResponse(body));
 }
 
