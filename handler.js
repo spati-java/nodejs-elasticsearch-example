@@ -1,8 +1,10 @@
 'use strict';
 
 
-const { Client } = require('@elastic/elasticsearch')
-const client = new Client({ node: 'http://localhost:9200' })
+const { Client } = require('@elastic/elasticsearch');
+const client = new Client({ node: 'http://localhost:9200' });
+
+const index_name = 'profile';
 
 module.exports.createProfile = async (event, context, callback) => {
 
@@ -57,21 +59,12 @@ module.exports.findAllProfile = async event => {
 
   console.log(body);
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        profiles: body.hits.hits
-      },
-      null,
-      2
-    ),
-  };
-};
+  return response(body);
+}
 
 // AUTOCOMPLETE EXAMPLE
 module.exports.findByTitle = async event => {
-console.log(event.pathParameters);
+  console.log(event.pathParameters);
   const { body } = await client.search({
     index: 'profile',
     body: {
@@ -86,16 +79,7 @@ console.log(event.pathParameters);
     }
   })
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        profiles: body.hits.hits
-      },
-      null,
-      2
-    ),
-  };
+  return reponse(body);
 }
 
 module.exports.findProfileById = async (event, context, callback) => {
@@ -111,18 +95,7 @@ module.exports.findProfileById = async (event, context, callback) => {
     }
   });
 
-  const resposne = {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        profiles: body.hits.hits
-      },
-      null,
-      2
-    ),
-  };
-
-  callback(null, resposne);
+  callback(null, resposne(body));
 
 }
 
@@ -155,18 +128,7 @@ module.exports.nestedQueryExample = async (event, context, callback) => {
     }
   });
 
-  const resposne = {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        profiles: body.hits.hits
-      },
-      null,
-      2
-    ),
-  };
-
-  callback(null, resposne);
+  callback(null, resposne(body));
 }
 
 module.exports.getProfileCount = async (event, context, callback) => {
@@ -175,7 +137,11 @@ module.exports.getProfileCount = async (event, context, callback) => {
     index: 'profile'
   });
 
-  const resposne = {
+  callback(null, countResponse(body));
+}
+
+function countResponse(body) {
+  return {
     statusCode: 200,
     body: JSON.stringify(
       {
@@ -185,6 +151,18 @@ module.exports.getProfileCount = async (event, context, callback) => {
       2
     ),
   };
-
-  callback(null, resposne);
 }
+
+function response(body) {
+  return {
+    statusCode: 200,
+    body: JSON.stringify(
+      {
+        profiles: body.hits.hits
+      },
+      null,
+      2
+    ),
+  };
+}
+
